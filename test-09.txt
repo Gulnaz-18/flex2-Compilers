@@ -1,0 +1,15 @@
+// Dalio, Brian A.
+// dalioba
+// 2020-10-03
+
+This is a "text file": line 5...
+Here are some single-character operators, +, -, *, /.
+This is "line 7" of that text file.  // Now with a comment on the end.
+You guessed it;  line 8, not line 76.54321.
+// This is another comment line.
+Here are some character literals 'a', 'z', 'A', 'Z', '*'.
+Here are some escaped character literals '\a' '\b' '\f' '\n' '\r' '\t' '\v'.
+Here are some trickier character literals '\'' '\"' '\?' '\\'.
+Some octal character literals '\1' '\10' '\101'.
+Some hex character literals '\x3' '\xFF'.
+Here is a string with some escapes "\x0ab\1\"\12\x1o\xF\"b\123".

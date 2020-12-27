@@ -1,0 +1,4 @@
+This is a "text file": line 1.
+Here are some single-character operators, +, -, *, /.
+This is "line 3" of that text file.
+You guessed it;  line 4, not line 32.54.

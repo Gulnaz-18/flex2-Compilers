@@ -1,0 +1,9 @@
+// Dalio, Brian A.
+// dalioba
+// 2020-10-03
+
+This is a "text file": line 5...
+Here are some single-character operators, +, -, *, /.
+This is "line 7" of that text file.  // Now with a comment on the end.
+You guessed it;  line 8, not line 76.54321.
+// This is another comment line.
