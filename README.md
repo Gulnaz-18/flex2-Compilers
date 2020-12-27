@@ -1,3 +1,3 @@
 # flex2
 Implementing regular expressions 
-Program written in C
+Program written in C using flex
