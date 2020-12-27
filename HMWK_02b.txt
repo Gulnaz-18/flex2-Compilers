@@ -1,0 +1,214 @@
+#----------------------------------------------------------------------
+Programming Assignment 02b
+
+#----------------------------------------------------------------------
+Purpose:
+
+  * Demonstrate ability to write some more simple Regular
+      Expressions and associated action routines for a flex lexer.
+
+#----------------------------------------------------------------------
+Background:
+
+  * Read "flex Notes, v1.2.pdf", posted in the Modules > Handouts
+      section for this course on Canvas.
+
+  * Seriously, read "flex Notes, v1.2.pdf".  It has been updated
+      since PA 02.
+
+  * A single-line comment begins with two forward slash characters
+      // and stretches up to the following newline.  Such a
+      comment can begin anywhere on a line -- it doesn't have to
+      begin at the left margin, for example.
+
+  * A character literal is enclosed in ' marks.  Its contents must
+      be a single character or a single escape sequence.
+
+  * An escape sequence is one of the following forms:
+
+      \w   -- where w is one of a, b, f, n, r, t, v, ', ", ?, or \.
+
+      \o   -- where o is an octal digit (0-7)
+      \oo
+
+      \poo -- where p is a octal digit in the range 0-3 and o is
+                an octal digit (0-7)
+
+      \xh  -- where h is a hex digit (0-9a-fA-F)
+      \xhh
+
+#----------------------------------------------------------------------
+Tasks:
+
+  1. Download hmwk_02b_dalioba.zip from Canvas.
+
+  2. Unzip this files somewhere convenient.
+
+  3. Change 'dalioba' in the name of the directory to your NetID.
+     (Your NetID is three letters followed by four or five digits.
+      The directory name will now be something like
+      'hmwk_02b_abc1234' but with _your_ NetID in place of
+      'abc1234'.)
+
+  4. Look in that directory.  There's a Template directory that
+     has some files in it.  Move them up one level into the
+     'hmwk_02b_abc1234' directory.
+
+  5. Change the header lines in the files hmwk_02b.l.
+
+      -- Line 1:  Family name first, then a comma, then
+                  personal name.
+
+      -- Line 2:  Your NetID.
+
+      -- Line 3:  The date you edited the file, in the format
+                  YYYY-MM-DD (all digits!).
+
+  6. Now edit hmwk_02b.l and add processing for:
+      (a) The four additional character tokens '+', '-', '*',
+            and '/'.
+
+      (b) //-style comments.
+
+      (c) Character literals.  This should be done in stages,
+            - Single characters, e.g., 'a', 'Q', ...
+            - Single character escapes \a, \b, \f, \n, \r, \t, \v.
+            - Trickier character escapes \', \", \?, \\.
+            - Octal escapes \o, \oo, \poo.
+            - Hex escapes \xh, \xhh.
+
+          The proper format for each of these is described in the
+          Background section above.
+
+      (d) Escape sequences inside string literals.
+
+      The tests in the Examples/ subdirectory are staged in this
+      order, so do enough work to get test-01.txt to work, then
+      get test-02.txt to work, etc., etc.
+
+      After you add each stage of processing, remake and run your
+      hmwk_02b.l on each successive test.  You should get the same
+      results as shown in the corresponding Results/ file.
+
+  7. Ensure your message formats match EXACTLY.  Your submission
+      is going to be evaluated by diffing your output against a
+      reference solution.
+
+#----------------------------------------------------------------------
+Submission:
+
+Make a zipfile of your 'hmwk_02b_abc1234' directory (with
+'abc1234' changed to YOUR NetID and with your hmwk_02b.l file in
+it) and submit this zipfile on Canvas as your results for this
+assignment.
+
+All your zipfile should include is a directory with one file in
+it, your version of hmwk_02b.l (did you update the headers
+correctly?).
+
+Do NOT include any other files.
+
+#----------------------------------------------------------------------
+Hints:
+  1. Ensure your program compiles and runs correctly.  You should
+     not get ANY warnings or errors when you compile.  ALWAYS
+     compile your code with -Wall and -Wextra and deal with ANY
+     warnings or errors that are identified.  ALWAYS compile your
+     code with -fsanitize=leak and -fsanitize=address and deal with
+     ANY warnings or errors reported.
+
+     Generating warnings or errors, not compiling, not running,
+     core dumping, crashing, going into an infinite loop, getting
+     the wrong answers, getting memory errors ... will earn you
+     ZERO points.
+
+     Ensure your output messages match the format shown above when
+     you add your own cases to the switch function in main().  The
+     output is going to be checked by a program, so it has to
+     match EXACTLY.  Not matching EXACTLY will earn you ZERO
+     points.
+
+     ('EXACTLY' means character-by-character the same.  No, e.g.,
+      differences in spacing, no changes in wording, no changes
+      in punctuation, no changes in capitalization, and so forth.)
+
+  2. Ensure that you update the three header lines in the source
+     file with YOUR name (family name first, then a comma, then
+     your personal name), YOUR NetID, and the date you edit the
+     file, in the format YYYY-MM-DD (all digits!).
+
+     Not updating the header lines properly will cost you points.
+
+  3. Implementing the four additional character tokens:  just add
+      them to the three places you already see the existing
+      character tokens ':', ',', ',', and ';'.  Trivial!
+
+  4. Implementing //-style comments:  One line of code in the
+      Rules Section.  Trivial!
+
+  5. Implementing character literals:
+      - Single characters:  Make a pattern similar to tok_STR_LIT
+          but using the ' mark instead of the " mark.  Also, allow
+          only one character inside the ' marks.  Ensure you
+          define tok_CHAR_LIT and make a proper printer for it in
+          the switch statement in main().  Trivial!
+
+  6. Implementing escape sequences for character literals:
+      - Single character escapes:  Allow not only single
+          characters inside the ' marks, but also \ followed by
+          one of the acceptable single characters abfnrtv.
+      - Trickier character escapes:  Allow \'"? to be one of the
+          single characters after a \.
+      - Octal escapes:  Allow 1, 2, or 3 octal digits to follow
+          the \.  If it's 3, ensure the first digit is 0-3.
+      - Hex escapes:  Allow an x followed by one or two hex digits
+          to follow the \.  Don't forget to allow upper and lower
+          case A-F.
+
+      The escape sequences _can_ be trivial if you approach them
+        properly.  Remember you can use a Definition (in the
+        Definitions Section) to make named parts of a RE.  (Read
+        "flex Notes, v1.2.pdf" again if you're unclear on what a
+        Definition is.)
+
+  7. If you implemented escape sequences for character literals
+      using Definitions, adding them to the string literal
+      pattern is absolutely trivial.
+
+  8. The sum total of work here (in the reference solution) was
+      adding seventeen (17) lines of code and updating three (3)
+      other lines of code.
+
+  9. Ensure your submission is packaged EXACTLY as described above.
+
+      -- Your submission should be a ZIP FILE (not a tar, rar, gz,
+         or any other kind of compressed file).
+
+      -- The zip file should be named 'hmwk_02b_abc1234.zip' (with
+         'abc1234' replaced with YOUR NetID).
+
+      -- This zip file should have ONE item in it, a directory
+         named 'hmwk_02b_abc1234'  (with 'abc1234' replaced with
+         YOUR NetID).
+
+      -- Your file should be in that directory.  The file should
+         be named hmwk_02b.l.
+
+     Submissions in the wrong format score ZERO points.
+
+ 10. Your submission is going to be tried against other test
+     files when it's evaluated for credit.  You DEFINITELY need to
+     make some test cases of your own to ensure that your regular
+     expressions are working properly.
+
+ 11. After you submit your zip file on Canvas, download it from
+     Canvas into an empty directory, unzip it, and check that your
+     submission is in the proper format, that the program runs and
+     prints the correct output, that you updated the header lines
+     correctly, and so forth.
+
+ 12. Are you CERTAIN you complied with all of these nit-picking
+     instructions?  Really?  Maybe you ought to check just one
+     more time. :)
+
+#----------------------------------------------------------------------
