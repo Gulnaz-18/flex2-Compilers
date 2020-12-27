@@ -1,0 +1,26 @@
+(1:1-4) ID 'This'
+(1:6-7) ID 'is'
+(1:9-9) ID 'a'
+(1:11-21) STRING_LITERAL "text file"
+(1:22-22) COLON
+(1:24-27) ID 'line'
+(1:29-30) DOUBLE_LITERAL 1
+(2:1-4) ID 'This'
+(2:6-7) ID 'is'
+(2:9-16) STRING_LITERAL "line 2"
+(2:18-19) ID 'of'
+(2:21-24) ID 'that'
+(2:26-29) ID 'text'
+(2:31-34) ID 'file'
+(2:35-35) PERIOD
+(3:1-3) ID 'You'
+(3:5-11) ID 'guessed'
+(3:13-14) ID 'it'
+(3:15-15) SEMICOLON
+(3:18-21) ID 'line'
+(3:23-23) INTEGER_LITERAL 3
+(3:24-24) COMMA
+(3:26-28) ID 'not'
+(3:30-33) ID 'line'
+(3:35-38) DOUBLE_LITERAL 2.54
+(3:39-39) PERIOD
